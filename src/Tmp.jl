@@ -1,6 +1,7 @@
-using Printf
-using Plots
 using Distributions
+using Parameters
+using Plots
+using Printf
 
 function simple_example()
     # make input timeseries
@@ -85,6 +86,7 @@ function single_path_sim(T, nsteps, qi1::Vector{Float64},
      nlinks = length(X)
      t = range(0, T, length=nsteps)
      Δt = step(t)
+     println(@sprintf "Δt: %f" Δt)
 
      qi = fill(0.0, (nlinks, nsteps))
      qe = fill(0.0, (nlinks, nsteps))
@@ -106,6 +108,9 @@ function single_path_sim(T, nsteps, qi1::Vector{Float64},
 
      return qi, qe
  end
+
+
+
 
 
 function make_qi(days, steps_per_day, event_spacing)
